@@ -4,6 +4,11 @@ import Countdown from "react-countdown";
 import { Button, CircularProgress, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
+import TankOne  from "./assets/4.png";
+import TankTwo  from "./assets/122.png";
+import TankThree  from "./assets/198.png";
+import TankFour  from "./assets/352.png";
+
 import * as anchor from "@project-serum/anchor";
 
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
@@ -19,13 +24,120 @@ import {
   shortenAddress,
 } from "./candy-machine";
 
-const ConnectButton = styled(WalletDialogButton)``;
+const ConnectButton = styled(WalletDialogButton)`
+padding: 16px 32px;
+border-radius: 5px;
+background-color: transparent;
+color: #000000;
+font-weight: normal;
+font-size: 40px;
+font-family: Disposable Droid BB;
+outline: none;
+border: none;
+transition: all 220ms ease-in-out;
+cursor: pointer;
+margin-bottom: 1em;
+
+&:hover {
+  background-color: #16B1F3;
+  border: none;
+  color: #FFFFFF;
+}
+`;
+
+const SloganText = styled.h1`
+  font-family: SF TransRobotics;
+  font-size: 64px;
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 30px;
+  line-height: 1.4;
+  text-align: center;
+
+  @media screen and (max-width: 480px) {
+  width: 100%;
+  font-size: 32px;
+}
+
+`;
+
+
+const ContainerRow = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: "row";
+  margin-bottom: 5px;
+  max-width: 90%;
+
+  @media screen and (max-width: 480px) {
+  width: 100%;
+  display: block;
+}
+`;
+
+const DescriptionText = styled.h3`
+  font-family: SF TransRobotics;
+  font-size: 20px;
+  font-weight: 400;
+  color: #000000;
+  margin: 20px;
+  line-height: 1.4;
+  text-align: center;
+  width: 50%;
+
+  @media screen and (max-width: 480px) {
+  width: 100%;
+  font-size: 32px;
+}
+
+`;
+
+const ServiceImg = styled.img`
+width: 24em;
+height: 16em;
+margin: 5px;
+
+  @media screen and (max-width: 480px) {
+  width: 12em;
+  height: 16em;
+}
+`;
 
 const CounterText = styled.span``; // add your styles here
 
-const MintContainer = styled.div``; // add your styles here
+const MintContainer = styled.div`
+width: 100%;
+height: 100vh;
+padding: 0;
+position=relative;
+display: flex;
+flex-direction: column;
+align-items: center;
 
-const MintButton = styled(Button)``; // add your styles here
+@media screen and (max-width: 480px) {
+  height: 100vh;
+}
+`; // add your styles here
+
+const MintButton = styled(Button)`
+padding: 16px 32px;
+border-radius: 5px;
+background-color: transparent;
+color: #FFFFFF;
+font-weight: normal;
+font-size: 40px;
+font-family: Disposable Droid BB;
+outline: none;
+border: none;
+transition: all 220ms ease-in-out;
+cursor: pointer;
+
+&:hover {
+  background-color: #16B1F3;
+  border: none;
+  color: #FFFFFF;
+}
+`; // add your styles here
 
 export interface HomeProps {
   candyMachineId: anchor.web3.PublicKey;
@@ -167,8 +279,20 @@ const Home = (props: HomeProps) => {
       {wallet.connected && (
         <p>Balance: {(balance || 0).toLocaleString()} SOL</p>
       )}
-
       <MintContainer>
+
+      <SloganText> ASCII Fishies ◎ </SloganText>
+      <ContainerRow>
+      <ServiceImg src={TankOne} />
+      <ServiceImg src={TankTwo} />
+      </ContainerRow>
+      <ContainerRow>
+      <ServiceImg src={TankThree} />
+      <ServiceImg src={TankFour} />
+      </ContainerRow>
+
+      <DescriptionText>500 ASCII Fish Tanks. 0.25 SOL for solana frens :) All unique, generated ASCII style art based off a Python script I wrote years ago. Just fun. Just affordable</DescriptionText>
+
         {!wallet.connected ? (
           <ConnectButton>Connect Wallet</ConnectButton>
         ) : (

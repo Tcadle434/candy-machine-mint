@@ -2,6 +2,7 @@ import "./App.css";
 import { useMemo } from "react";
 
 import Home from "./Home";
+import styled from "styled-components";
 
 import * as anchor from "@project-serum/anchor";
 import { clusterApiUrl } from "@solana/web3.js";
@@ -18,6 +19,21 @@ import {
 } from "@solana/wallet-adapter-react";
 
 import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
+
+const TopContainer = styled.div`
+  width: 100%;
+  height: 1100px;
+  padding: 0;
+  position=relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d3d3d3;
+
+  @media screen and (max-width: 480px) {
+    height: 100vh;
+}
+`;
 
 const treasury = new anchor.web3.PublicKey(
   process.env.REACT_APP_TREASURY_ADDRESS!
@@ -52,6 +68,7 @@ const App = () => {
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletDialogProvider>
+        <TopContainer>
           <Home
             candyMachineId={candyMachineId}
             config={config}
@@ -60,6 +77,7 @@ const App = () => {
             treasury={treasury}
             txTimeout={txTimeout}
           />
+          </TopContainer>
         </WalletDialogProvider>
       </WalletProvider>
     </ConnectionProvider>
