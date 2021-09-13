@@ -22,7 +22,7 @@ import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 1100px;
+  height: 100vh;
   padding: 0;
   position=relative;
   display: flex;
