@@ -81,6 +81,8 @@ const DataContainer = styled.div`
   border: 2px solid;
   font-size: 30px!important;
   font-family: Disposable Droid BB!important;
+  height: 90px;
+  width: 275px;
 `;
 
 const PriceContainer = styled.div`
@@ -165,7 +167,7 @@ const Home = (props: HomeProps) => {
     severity: undefined,
   });
 
-  const [startDate, setStartDate] = useState(new Date(props.startDate));
+  const [startDate, setStartDate] = useState(new Date(1632851700000));
 
   const wallet = useAnchorWallet();
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
