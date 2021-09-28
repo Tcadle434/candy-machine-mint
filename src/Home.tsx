@@ -10,7 +10,7 @@ import * as anchor from "@project-serum/anchor";
 
 import { LAMPORTS_PER_SOL } from "@solana/web3.js";
 
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useAnchorWallet } from "@solana/wallet-adapter-react";
 import { WalletDialogButton } from "@solana/wallet-adapter-material-ui";
 
 import {
@@ -167,13 +167,13 @@ const Home = (props: HomeProps) => {
 
   const [startDate, setStartDate] = useState(new Date(props.startDate));
 
-  const wallet = useWallet();
+  const wallet = useAnchorWallet();
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
 
   const onMint = async () => {
     try {
       setIsMinting(true);
-      if (wallet.connected && candyMachine?.program && wallet.publicKey) {
+      if (wallet && candyMachine?.program) {
         const mintTxId = await mintOneToken(
           candyMachine,
           props.config,
@@ -228,8 +228,8 @@ const Home = (props: HomeProps) => {
         severity: "error",
       });
     } finally {
-      if (wallet?.publicKey) {
-        const balance = await props.connection.getBalance(wallet?.publicKey);
+      if (wallet) {
+        const balance = await props.connection.getBalance(wallet.publicKey);
         setBalance(balance / LAMPORTS_PER_SOL);
       }
       setIsMinting(false);
@@ -238,7 +238,7 @@ const Home = (props: HomeProps) => {
 
   useEffect(() => {
     (async () => {
-      if (wallet?.publicKey) {
+      if (wallet) {
         const balance = await props.connection.getBalance(wallet.publicKey);
         setBalance(balance / LAMPORTS_PER_SOL);
       }
@@ -247,24 +247,11 @@ const Home = (props: HomeProps) => {
 
   useEffect(() => {
     (async () => {
-      if (
-        !wallet ||
-        !wallet.publicKey ||
-        !wallet.signAllTransactions ||
-        !wallet.signTransaction
-      ) {
-        return;
-      }
-
-      const anchorWallet = {
-        publicKey: wallet.publicKey,
-        signAllTransactions: wallet.signAllTransactions,
-        signTransaction: wallet.signTransaction,
-      } as anchor.Wallet;
+      if (!wallet) return;
 
       const { candyMachine, goLiveDate, itemsRemaining } =
         await getCandyMachineState(
-          anchorWallet,
+          wallet as anchor.Wallet,
           props.candyMachineId,
           props.connection
         );
@@ -283,11 +270,11 @@ const Home = (props: HomeProps) => {
     </ImgContainer>
 
     <DataRow>
-      {wallet.connected && (<DataContainer>
+      {wallet && (<DataContainer>
         <p>Address: {shortenAddress(wallet.publicKey?.toBase58() || "")}</p>
         </DataContainer>
       )}
-      {wallet.connected && (<DataContainer>
+      {wallet && (<DataContainer>
         <p>Balance: {(balance || 0).toLocaleString()} SOL</p>
         </DataContainer>
       )}
@@ -304,7 +291,7 @@ const Home = (props: HomeProps) => {
 
       <MintContainer>
 
-        {!wallet.connected ? (
+        {!wallet ? (
           <ConnectButton>Connect Wallet</ConnectButton>
         ) : (
           <MintButton
