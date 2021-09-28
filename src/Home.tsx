@@ -167,7 +167,7 @@ const Home = (props: HomeProps) => {
     severity: undefined,
   });
 
-  const [startDate, setStartDate] = useState(new Date(1632851700000));
+  const [startDate, setStartDate] = useState(new Date(1632868200000));
 
   const wallet = useAnchorWallet();
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
