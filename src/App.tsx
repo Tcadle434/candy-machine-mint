@@ -11,8 +11,10 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import {
   getPhantomWallet,
+  getSlopeWallet,
   getSolflareWallet,
   getSolletWallet,
+  getSolletExtensionWallet,
 } from "@solana/wallet-adapter-wallets";
 
 import {
@@ -21,6 +23,7 @@ import {
 } from "@solana/wallet-adapter-react";
 
 import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
+import { createTheme, ThemeProvider } from "@material-ui/core";
 
 const TopContainer = styled.div`
   background-position: center!important;
@@ -64,15 +67,47 @@ const startDateSeed = parseInt(process.env.REACT_APP_CANDY_START_DATE!, 10);
 
 const txTimeout = 30000; // milliseconds (confirm this works for your project)
 
+const theme = createTheme({
+    palette: {
+        type: 'dark',
+    },
+    overrides: {
+        MuiButtonBase: {
+            root: {
+                justifyContent: 'flex-start',
+            },
+        },
+        MuiButton: {
+            root: {
+                textTransform: undefined,
+                padding: '12px 16px',
+            },
+            startIcon: {
+                marginRight: 8,
+            },
+            endIcon: {
+                marginLeft: 8,
+            },
+        },
+    },
+});
+
 const App = () => {
   const endpoint = useMemo(() => clusterApiUrl(network), []);
 
   const wallets = useMemo(
-    () => [getPhantomWallet(), getSolflareWallet(), getSolletWallet()],
+    () => [
+        getPhantomWallet(),
+        getSlopeWallet(),
+        getSolflareWallet(),
+        getSolletWallet({ network }),
+        getSolletExtensionWallet({ network })
+    ],
     []
   );
 
   return (
+    <ThemeProvider theme={theme}>
     <ConnectionProvider endpoint={endpoint}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletDialogProvider>
@@ -91,6 +126,7 @@ const App = () => {
         </WalletDialogProvider>
       </WalletProvider>
     </ConnectionProvider>
+    </ThemeProvider>
   );
 };
 
