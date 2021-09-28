@@ -4,10 +4,7 @@ import Countdown from "react-countdown";
 import { Button, CircularProgress, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
-import TankOne  from "./assets/4.png";
-import TankTwo  from "./assets/122.png";
-import TankThree  from "./assets/198.png";
-import TankFour  from "./assets/352.png";
+import ASRCLogo from "./assets/Logo_still.png";
 
 import * as anchor from "@project-serum/anchor";
 
@@ -25,77 +22,32 @@ import {
 } from "./candy-machine";
 
 const ConnectButton = styled(WalletDialogButton)`
-padding: 16px 32px;
-border-radius: 5px;
-background-color: transparent;
-color: #000000;
-font-weight: normal;
-font-size: 40px;
-font-family: Disposable Droid BB;
-outline: none;
-border: none;
-transition: all 220ms ease-in-out;
-cursor: pointer;
-margin-bottom: 1em;
+  padding: 16px 32px!important;
+  border-radius: 5px!important;
+  background-color: rgba(106, 53, 53, 0.50)!important;
+  color: #FFFFFF!important;
+  font-weight: normal!important;
+  font-size: 40px!important;
+  font-family: Disposable Droid BB!important;
+  outline: none!important;
+  border: none!important;
+  transition: all 220ms ease-in-out!important;
+  cursor: pointer!important;
+  margin-bottom: 1em!important;
+
 
 &:hover {
-  background-color: #16B1F3;
-  border: none;
-  color: #FFFFFF;
+  background-color: rgba(106, 53, 53, 0.88)!important;
+  border: none!important;
+  color: #FFFFFF!important;
 }
-`;
-
-const SloganText = styled.h1`
-  font-family: SF TransRobotics;
-  font-size: 64px;
-  font-weight: 400;
-  color: #000000;
-  margin-bottom: 30px;
-  line-height: 1.4;
-  text-align: center;
-
-  @media screen and (max-width: 480px) {
-  width: 100%;
-  font-size: 32px;
-}
-
-`;
-
-
-const ContainerRow = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: "row";
-  margin-bottom: 5px;
-  max-width: 90%;
-
-  @media screen and (max-width: 480px) {
-  width: 100%;
-  display: block;
-}
-`;
-
-const DescriptionText = styled.h3`
-  font-family: SF TransRobotics;
-  font-size: 20px;
-  font-weight: 400;
-  color: #000000;
-  margin: 20px;
-  line-height: 1.4;
-  text-align: center;
-  width: 50%;
-
-  @media screen and (max-width: 480px) {
-  width: 100%;
-  font-size: 32px;
-}
-
 `;
 
 const ServiceImg = styled.img`
-width: 24em;
-height: 16em;
-margin: 5px;
+  width: 24em;
+  height: 24em;
+  margin: 5px;
+  align-items: center!important;
 
   @media screen and (max-width: 480px) {
   width: 12em;
@@ -103,39 +55,91 @@ margin: 5px;
 }
 `;
 
-const CounterText = styled.span``; // add your styles here
-
-const MintContainer = styled.div`
-width: 100%;
-height: 100vh;
-padding: 0;
-position=relative;
-display: flex;
-flex-direction: column;
-align-items: center;
-
-@media screen and (max-width: 480px) {
-  height: 100vh;
-}
+const CounterText = styled.span`
+color: #FFFFFF!important;
+font-weight: normal!important;
+font-size: 40px!important;
+font-family: Disposable Droid BB!important;
 `; // add your styles here
 
-const MintButton = styled(Button)`
-padding: 16px 32px;
-border-radius: 5px;
-background-color: transparent;
-color: #FFFFFF;
-font-weight: normal;
-font-size: 40px;
-font-family: Disposable Droid BB;
-outline: none;
-border: none;
-transition: all 220ms ease-in-out;
-cursor: pointer;
+const MintContainer = styled.div`
+  padding: 0;
+  position=relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-&:hover {
-  background-color: #16B1F3;
-  border: none;
-  color: #FFFFFF;
+`; // add your styles here
+
+const DataContainer = styled.div`
+  padding: 10px;
+  position=relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF!important;
+  border: 2px solid;
+  font-size: 30px!important;
+  font-family: Disposable Droid BB!important;
+`;
+
+const PriceContainer = styled.div`
+  position=relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF!important;
+  font-size: 38px!important;
+  font-family: Disposable Droid BB!important;
+`;
+
+const ImgContainer = styled.div`
+  position=relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const RemainingContainer = styled.div`
+  position=relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #FFFFFF!important;
+  font-size: 38px!important;
+  font-family: Disposable Droid BB!important;
+  margin-bottom: 20px;
+
+`;
+
+const DataRow = styled.div`
+  padding: 15px;
+  position=relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+`;
+
+const MintButton = styled(Button)`
+  padding: 12px 32px!important;
+  border-radius: 5px!important;
+  background-color: rgba(106, 53, 53, 0.50)!important;
+  color: #FFFFFF!important;
+  font-weight: normal!important;
+  font-size: 50px!important;
+  font-family: Disposable Droid BB!important;
+  outline: none!important;
+  border: 2px solid;
+  transition: all 220ms ease-in-out!important;
+  cursor: pointer!important;
+  margin-bottom: 1em!important;
+
+
+  &:hover {
+  background-color: rgba(106, 53, 53, 0.88)!important;
+  border: none!important;
+  color: #FFFFFF!important;
 }
 `; // add your styles here
 
@@ -153,6 +157,7 @@ const Home = (props: HomeProps) => {
   const [isActive, setIsActive] = useState(false); // true when countdown completes
   const [isSoldOut, setIsSoldOut] = useState(false); // true when items remaining is zero
   const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
+  const [isAvailable, setIsAvailable] = useState<number>();
 
   const [alertState, setAlertState] = useState<AlertState>({
     open: false,
@@ -264,6 +269,7 @@ const Home = (props: HomeProps) => {
           props.connection
         );
 
+      setIsAvailable(itemsRemaining);
       setIsSoldOut(itemsRemaining === 0);
       setStartDate(goLiveDate);
       setCandyMachine(candyMachine);
@@ -272,26 +278,31 @@ const Home = (props: HomeProps) => {
 
   return (
     <main>
-      {wallet.connected && (
+    <ImgContainer>
+      <ServiceImg src={ASRCLogo} />
+    </ImgContainer>
+
+    <DataRow>
+      {wallet.connected && (<DataContainer>
         <p>Address: {shortenAddress(wallet.publicKey?.toBase58() || "")}</p>
+        </DataContainer>
       )}
-
-      {wallet.connected && (
+      {wallet.connected && (<DataContainer>
         <p>Balance: {(balance || 0).toLocaleString()} SOL</p>
+        </DataContainer>
       )}
+
+      </DataRow>
+
+      <PriceContainer>
+        <p>Mint Price: 1 SOL </p>
+      </PriceContainer>
+
+      <RemainingContainer>
+      BOTS remaining: {isAvailable} / 4444
+      </RemainingContainer>
+
       <MintContainer>
-
-      <SloganText> ASCII Fishies ◎ </SloganText>
-      <ContainerRow>
-      <ServiceImg src={TankOne} />
-      <ServiceImg src={TankTwo} />
-      </ContainerRow>
-      <ContainerRow>
-      <ServiceImg src={TankThree} />
-      <ServiceImg src={TankFour} />
-      </ContainerRow>
-
-      <DescriptionText>500 ASCII Fish Tanks. 0.25 SOL for solana frens :) All unique, generated ASCII style art based off a Python script I wrote years ago. Just fun. Just affordable</DescriptionText>
 
         {!wallet.connected ? (
           <ConnectButton>Connect Wallet</ConnectButton>

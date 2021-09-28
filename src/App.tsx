@@ -4,6 +4,8 @@ import { useMemo } from "react";
 import Home from "./Home";
 import styled from "styled-components";
 
+import RDayGif from "./assets/R-Day-size.jpg";
+
 import * as anchor from "@project-serum/anchor";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
@@ -21,17 +23,23 @@ import {
 import { WalletDialogProvider } from "@solana/wallet-adapter-material-ui";
 
 const TopContainer = styled.div`
-  width: 100%;
-  height: 100vh;
-  padding: 0;
-  position=relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #d3d3d3;
+  background-position: center!important;
+  background-size: cover!important;
+  background-repeat: no-repeat!important;
+  width: 100vw!important;
+  height: 100vh!important;
+  position: relative;
+  background-image: url(${RDayGif});
+}
+`;
 
-  @media screen and (max-width: 480px) {
-    height: 100vh;
+const TopFilter = styled.div`
+  width: 100vw!important;
+  height: 100vh!important;
+  background-color: rgba(55, 55, 55, 0.86)!important;
+  display: flex!important;
+  flex-direction: column!important;
+  align-items: center!important;
 }
 `;
 
@@ -69,6 +77,7 @@ const App = () => {
       <WalletProvider wallets={wallets} autoConnect>
         <WalletDialogProvider>
         <TopContainer>
+        <TopFilter>
           <Home
             candyMachineId={candyMachineId}
             config={config}
@@ -77,6 +86,7 @@ const App = () => {
             treasury={treasury}
             txTimeout={txTimeout}
           />
+          </TopFilter>
           </TopContainer>
         </WalletDialogProvider>
       </WalletProvider>
