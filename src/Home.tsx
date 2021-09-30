@@ -167,7 +167,7 @@ const Home = (props: HomeProps) => {
     severity: undefined,
   });
 
-  const [startDate, setStartDate] = useState(new Date(1632956400000));
+  const [startDate, setStartDate] = useState(new Date(1633118400000));
 
   const wallet = useAnchorWallet();
   const [candyMachine, setCandyMachine] = useState<CandyMachine>();
@@ -284,11 +284,11 @@ const Home = (props: HomeProps) => {
       </DataRow>
 
       <PriceContainer>
-        <p>Mint Price: 0.75 SOL </p>
+        <p>Mint Price: 0.15 SOL </p>
       </PriceContainer>
 
       <RemainingContainer>
-      BOTS remaining: {isAvailable} / 300
+      BOTS remaining: {isAvailable} / 4444
       </RemainingContainer>
 
       <MintContainer>
